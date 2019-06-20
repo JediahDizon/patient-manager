@@ -21,6 +21,9 @@ export class EditPatientComponent implements OnInit {
   firstName = new FormControl('', Validators.required);
   lastName = new FormControl('', Validators.required);
   birthDate = new FormControl('', Validators.required);
+  civicAddress = new FormControl('', Validators.required);
+  municipality = new FormControl('', Validators.required);
+  postalCode = new FormControl('', Validators.required);
   form: FormGroup;
   saveError: string;
 
@@ -33,7 +36,10 @@ export class EditPatientComponent implements OnInit {
     this.form = fb.group({
       'firstName': this.firstName,
       'lastName': this.lastName,
-      'birthDate': this.birthDate
+      'birthDate': this.birthDate,
+      'civicAddress': this.civicAddress,
+      'municipality': this.municipality,
+      'postalCode': this.postalCode
     });
   }
 
@@ -45,6 +51,8 @@ export class EditPatientComponent implements OnInit {
         this.firstName.setValue(patient.firstName || '');
         this.lastName.setValue(patient.lastName || '');
         this.birthDate.setValue(patient.birthDate || '');
+        this.civicAddress.setValue(patient.civicAddress || '');
+        this.municipality.setValue(patient.municipality || '');
       } else {
         this.patientId = '';
       }
@@ -56,7 +64,10 @@ export class EditPatientComponent implements OnInit {
       id: this.patientId,
       firstName: formValue.firstName,
       lastName: formValue.lastName,
-      birthDate: formValue.birthDate
+      birthDate: formValue.birthDate,
+      civicAddress: formValue.civicAddress,
+      municipality: formValue.municipality,
+      postalCode: formValue.postalCode
     };
 
     this.saveError = '';

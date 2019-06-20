@@ -12,7 +12,7 @@ class PatientRequest {
       error.messages = messages;
       throw error;
     }
- 
+
     this._patient = {};
     if (id) {
       this._patient.id = id;
@@ -20,6 +20,9 @@ class PatientRequest {
     this._patient.firstName = body.firstName;
     this._patient.lastName = body.lastName;
     this._patient.birthDate = body.birthDate;
+    this._patient.civicAddress = body.civicAddress;
+    this._patient.municipality = body.municipality;
+    this._patient.postalCode = body.postalCode;
   }
 
   get patient() {
@@ -60,7 +63,7 @@ class PatientRequest {
 
 /**
  * Construct a PatientRequest object from a request to create a new patient
- * 
+ *
  * @param {Object} body - An HTTP request body
  * @throws if the request is not correctly formed
  */
@@ -70,7 +73,7 @@ function forCreate(body) {
 
 /**
  * Construct a PatientRequest object from a request to create a new patient
- * 
+ *
  * @param {string} id - patient id from the resource URI
  * @param {Object} body - An HTTP request body
  * @throws if the request is not correctly formed

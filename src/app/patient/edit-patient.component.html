@@ -20,8 +20,23 @@
         <em *ngIf="birthDate.invalid && birthDate.touched">Required</em>
         <input formControlName="birthDate" name="birthDate" required id="birthDate" type="text" class="form-control" placeholder="yyyy-mm-dd"/>
       </div>
+      <div class="form-group" [ngClass]="{'error': civicAddress.invalid && civicAddress.touched}">
+        <label for="civicAddress">Address:</label>
+        <em *ngIf="civicAddress.invalid && civicAddress.touched">Required</em>
+        <input formControlName="civicAddress" name="civicAddress" required id="civicAddress" type="text" class="form-control"/>
+      </div>
+      <div class="form-group" [ngClass]="{'error': municipality.invalid && municipality.touched}">
+        <label for="municipality">Municipality:</label>
+        <em *ngIf="municipality.invalid && municipality.touched">Required</em>
+        <input formControlName="municipality" name="municipality" required id="municipality" type="text" class="form-control" placeholder="Calgary AB"/>
+      </div>
+      <div class="form-group" [ngClass]="{'error': postalCode.invalid && postalCode.touched}">
+        <label for="postalCode">Postal Code:</label>
+        <em *ngIf="postalCode.invalid && postalCode.touched">Required</em>
+        <input formControlName="postalCode" name="postalCode" required id="postalCode" type="text" class="form-control" placeholder="A1A 1A1"/>
+      </div>
       <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
       <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-      </form>
+    </form>
   </div>
 </div>

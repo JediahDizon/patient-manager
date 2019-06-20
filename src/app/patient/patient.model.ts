@@ -3,4 +3,7 @@ export interface Patient {
   firstName: string;
   lastName: string;
   birthDate: string;
+  civicAddress: string;
+  municipality: string;
+  postalCode: string;
 }

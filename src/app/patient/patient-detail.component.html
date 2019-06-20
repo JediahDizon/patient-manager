@@ -3,6 +3,9 @@
     <div class="col-md-6">
       <h3 class="title">{{patient.lastName}}, {{patient.firstName}}</h3>
       <div>Birth Date: {{patient.birthDate}}</div>
+      <div>{{patient.civicAddress}}</div>
+      <div>{{patient.municipality}}</div>
+      <div>{{patient.postalCode}}</div>
     </div>
     <div class="col-md-1">
       <h3><fa-icon (click)="edit()" [icon]="editIcon"></fa-icon></h3>

@@ -2,10 +2,10 @@ const sqlite = require('sqlite');
 
 /**
  * Setup an in-memory sqlite database with a schema and some sample data
- * 
+ *
  * In a real application migrations might be used to execute DDL statements against
  * the database
- * 
+ *
  * Populates the global variable 'db' with a reference to the database.  This is required
  * to allow both jasmine and wallaby to setup the database before tests execute.
  */
@@ -26,17 +26,25 @@ async function populatePatients() {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       first_name TEXT,
       last_name TEXT,
-      birth_date TEXT
+      birth_date TEXT,
+      civic_address TEXT,
+      municipality TEXT,
+      province TEXT,
+      postal_code TEXT
   )`);
   for(const patient of PATIENTS) {
     await global.db.run(`
-      INSERT INTO patients (id, first_name, last_name, birth_date)
-      VALUES ($id, $firstName, $lastName, $birthDate)
+      INSERT INTO patients (id, first_name, last_name, birth_date, civic_address, municipality, province, postal_code)
+      VALUES ($id, $firstName, $lastName, $birthDate, $civicAddress, $municipality, $province, $postalCode)
       `, {
       $id: patient.id,
       $firstName: patient.firstName,
       $lastName: patient.lastName,
-      $birthDate: patient.birthDate
+      $birthDate: patient.birthDate,
+      $civicAddress: patient.civicAddress,
+      $municipality: patient.municipality,
+      $province: patient.province,
+      $postalCode: patient.postalCode,
     });
   }
 }

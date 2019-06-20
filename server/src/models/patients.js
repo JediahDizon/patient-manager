@@ -1,8 +1,8 @@
 const database = require('./database');
 
 /**
- * Persistence layer for patients 
- * 
+ * Persistence layer for patients
+ *
  * This class is responsible for mapping between the string type of the patient's id
  * in the patient model and the internal integer representation in the database.
  */
@@ -12,24 +12,28 @@ const database = require('./database');
  */
 exports.getAll = async () => {
   const db = database.getDatabase();
-  let rows = await db.all('SELECT id, first_name, last_name, birth_date FROM patients');
+  let rows = await db.all('SELECT id, first_name, last_name, birth_date, civic_address, municipality, province, postal_code FROM patients');
   return rows.map(row => {
     return {
       id: '' + row.id,
       firstName: row.first_name,
       lastName: row.last_name,
-      birthDate: row.birth_date
+      birthDate: row.birth_date,
+      civicAddress: row.civic_address,
+      municipality: row.municipality,
+      province: row.province,
+      postalCode: row.postal_code
     };
   });
 };
 
 /**
  * @param { string } id Patient's unique ID
- * @returns { Patient } Patient object 
+ * @returns { Patient } Patient object
  */
 exports.get = async (id) => {
   const db = database.getDatabase();
-  let row = await db.get('SELECT id, first_name, last_name, birth_date FROM patients WHERE id = $id', { $id: +id });
+  let row = await db.get('SELECT id, first_name, last_name, birth_date, civic_address, municipality, province, postal_code FROM patients WHERE id = $id', { $id: +id });
   if (!row) {
     return null;
   }
@@ -37,7 +41,11 @@ exports.get = async (id) => {
     id: '' + row.id,
     firstName: row.first_name,
     lastName: row.last_name,
-    birthDate: row.birth_date
+    birthDate: row.birth_date,
+    civicAddress: row.civic_address,
+    municipality: row.municipality,
+    province: row.province,
+    postalCode: row.postal_code
   };
 };
 
@@ -59,8 +67,8 @@ exports.delete = async (id) => {
 exports.create = async (patient) => {
   const db = database.getDatabase();
   let result = await db.run(
-    'INSERT INTO patients (first_name, last_name, birth_date) VALUES ($firstName, $lastName, $birthDate)',
-    { $firstName: patient.firstName, $lastName: patient.lastName, $birthDate: patient.birthDate }
+    'INSERT INTO patients (first_name, last_name, birth_date, civic_address, municipality, province, postal_code) VALUES ($firstName, $lastName, $birthDate, $civicAddress, $municipality, $province, $postalCode)',
+    { $firstName: patient.firstName, $lastName: patient.lastName, $birthDate: patient.birthDate, $civicAddress: patient.civicAddress, $municipality: patient.municipality, $province: patient.province, $postalCode: patient.postalCode }
   );
   if (!result.lastID) {
     throw new Error('Failed to create patient');
@@ -77,9 +85,9 @@ exports.update = async (patient) => {
   const db = database.getDatabase();
   let result = await db.run(`
     UPDATE patients
-    SET first_name = $firstName, last_name = $lastName, birth_date = $birthDate 
+    SET first_name = $firstName, last_name = $lastName, birth_date = $birthDate, civic_address = $civicAddress, municipality = $municipality, province = $province, postal_code = $postalCode
     WHERE id = $id
-  `, { $firstName: patient.firstName, $lastName: patient.lastName, $birthDate: patient.birthDate, $id: +patient.id });
+  `, { $firstName: patient.firstName, $lastName: patient.lastName, $birthDate: patient.birthDate, $id: +patient.id, $civicAddress: patient.civicAddress, $municipality: patient.municipality, $postalCode: patient.postalCode });
   if (!result.changes) {
     throw new Error(`Failed to update patient with id '${patient.id}'`);
   }
