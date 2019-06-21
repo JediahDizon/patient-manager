@@ -6,21 +6,28 @@ const patientsController = require('../controllers/patientsController');
 /**
  * @api { get } /api/patients/:id Retrieve specific patient by id
  *
- * @apiParam { string } id Patient's unique ID 
+ * @apiParam { string } id Patient's unique ID
  */
 router.get('/:id', patientsController.patients_show);
 
 /**
+ * @api { get } /api/patiens/:id Retrieve the specific address of a patient by id
+ *
+ * @apiParam { string } id Patient's unique ID
+ */
+router.get('/:id/address', patientsController.patients_show_address);
+
+/**
  * @api { put } /api/patients/:id Update a specific patient by id
  *
- * @apiParam { string } id Patient's unique ID 
+ * @apiParam { string } id Patient's unique ID
  */
 router.put('/:id', patientsController.patients_update);
 
 /**
  * @api { delete } /api/patients/:id Delete a specific patient by id
  *
- * @apiParam { string } id Patient's unique ID 
+ * @apiParam { string } id Patient's unique ID
  */
 router.delete('/:id', patientsController.patients_delete);
 

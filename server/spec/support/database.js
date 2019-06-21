@@ -29,13 +29,12 @@ async function populatePatients() {
       birth_date TEXT,
       civic_address TEXT,
       municipality TEXT,
-      province TEXT,
       postal_code TEXT
   )`);
   for(const patient of PATIENTS) {
     await global.db.run(`
-      INSERT INTO patients (id, first_name, last_name, birth_date, civic_address, municipality, province, postal_code)
-      VALUES ($id, $firstName, $lastName, $birthDate, $civicAddress, $municipality, $province, $postalCode)
+      INSERT INTO patients (id, first_name, last_name, birth_date, civic_address, municipality, postal_code)
+      VALUES ($id, $firstName, $lastName, $birthDate, $civicAddress, $municipality, $postalCode)
       `, {
       $id: patient.id,
       $firstName: patient.firstName,
@@ -43,7 +42,6 @@ async function populatePatients() {
       $birthDate: patient.birthDate,
       $civicAddress: patient.civicAddress,
       $municipality: patient.municipality,
-      $province: patient.province,
       $postalCode: patient.postalCode,
     });
   }

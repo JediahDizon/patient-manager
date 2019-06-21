@@ -12,7 +12,7 @@ const database = require('./database');
  */
 exports.getAll = async () => {
   const db = database.getDatabase();
-  let rows = await db.all('SELECT id, first_name, last_name, birth_date, civic_address, municipality, province, postal_code FROM patients');
+  let rows = await db.all('SELECT id, first_name, last_name, birth_date, civic_address, municipality, postal_code FROM patients');
   return rows.map(row => {
     return {
       id: '' + row.id,
@@ -21,7 +21,6 @@ exports.getAll = async () => {
       birthDate: row.birth_date,
       civicAddress: row.civic_address,
       municipality: row.municipality,
-      province: row.province,
       postalCode: row.postal_code
     };
   });
@@ -33,7 +32,7 @@ exports.getAll = async () => {
  */
 exports.get = async (id) => {
   const db = database.getDatabase();
-  let row = await db.get('SELECT id, first_name, last_name, birth_date, civic_address, municipality, province, postal_code FROM patients WHERE id = $id', { $id: +id });
+  let row = await db.get('SELECT id, first_name, last_name, birth_date, civic_address, municipality, postal_code FROM patients WHERE id = $id', { $id: +id });
   if (!row) {
     return null;
   }
@@ -44,7 +43,6 @@ exports.get = async (id) => {
     birthDate: row.birth_date,
     civicAddress: row.civic_address,
     municipality: row.municipality,
-    province: row.province,
     postalCode: row.postal_code
   };
 };
@@ -67,8 +65,8 @@ exports.delete = async (id) => {
 exports.create = async (patient) => {
   const db = database.getDatabase();
   let result = await db.run(
-    'INSERT INTO patients (first_name, last_name, birth_date, civic_address, municipality, province, postal_code) VALUES ($firstName, $lastName, $birthDate, $civicAddress, $municipality, $province, $postalCode)',
-    { $firstName: patient.firstName, $lastName: patient.lastName, $birthDate: patient.birthDate, $civicAddress: patient.civicAddress, $municipality: patient.municipality, $province: patient.province, $postalCode: patient.postalCode }
+    'INSERT INTO patients (first_name, last_name, birth_date, civic_address, municipality, postal_code) VALUES ($firstName, $lastName, $birthDate, $civicAddress, $municipality, $postalCode)',
+    { $firstName: patient.firstName, $lastName: patient.lastName, $birthDate: patient.birthDate, $civicAddress: patient.civicAddress, $municipality: patient.municipality, $postalCode: patient.postalCode }
   );
   if (!result.lastID) {
     throw new Error('Failed to create patient');
@@ -85,7 +83,7 @@ exports.update = async (patient) => {
   const db = database.getDatabase();
   let result = await db.run(`
     UPDATE patients
-    SET first_name = $firstName, last_name = $lastName, birth_date = $birthDate, civic_address = $civicAddress, municipality = $municipality, province = $province, postal_code = $postalCode
+    SET first_name = $firstName, last_name = $lastName, birth_date = $birthDate, civic_address = $civicAddress, municipality = $municipality, postal_code = $postalCode
     WHERE id = $id
   `, { $firstName: patient.firstName, $lastName: patient.lastName, $birthDate: patient.birthDate, $id: +patient.id, $civicAddress: patient.civicAddress, $municipality: patient.municipality, $postalCode: patient.postalCode });
   if (!result.changes) {

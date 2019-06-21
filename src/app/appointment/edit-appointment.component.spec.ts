@@ -21,7 +21,7 @@ const startTime = moment('2018-08-14T15:00:00Z');
 const duration = 65;
 const today = new Date(2018, 6, 24, 14, 10);
 const appointment: Appointment = { id: appointmentId, patientId, firstName, lastName, startTime, duration };
-const patient: Patient = { id: patientId, firstName, lastName, birthDate: '1993-07-22' };
+const patient: Patient = { id: patientId, firstName, lastName, birthDate: '1993-07-22', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' };
 
 describe('EditAppointmentComponent', () => {
   let fixture: ComponentFixture<EditAppointmentComponent>;

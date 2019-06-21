@@ -10,7 +10,7 @@ describe('patients model', () => {
   it('retrieves an existing patient', async () => {
     let patient = await patients.get('1');
 
-    expect(patient).toEqual({ id: '1', firstName: 'Alek', lastName: 'Ziemann', birthDate: '1973-03-05' });
+    expect(patient).toEqual({ id: '1', firstName: 'Alek', lastName: 'Ziemann', birthDate: '1973-03-05', civicAddress: null, municipality: null, postalCode: null });
   });
 
   it('returns null when patient does not exist', async () => {

@@ -9,7 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Component } from '@angular/core';
 
-const patient: Patient = { id: '1', firstName: 'Yasmin', lastName: 'Apt', birthDate: '1964-05-13' };
+const patient: Patient = { id: '1', firstName: 'Yasmin', lastName: 'Apt', birthDate: '1964-05-13', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' };
 
 describe('PatientDetailComponent', () => {
   let fixture: ComponentFixture<PatientDetailComponent>;

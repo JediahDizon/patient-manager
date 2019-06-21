@@ -19,7 +19,7 @@ describe('GET /api/patients/:id', () => {
       .get('/api/patients/1')
       .expect('Content-Type', /json/)
       .expect(200)
-      .expect({id: '1', firstName: 'Alek', lastName: 'Ziemann', birthDate: '1973-03-05'});
+      .expect({id: '1', firstName: 'Alek', lastName: 'Ziemann', birthDate: '1973-03-05', civicAddress: null, municipality: null, postalCode: null });
   });
 
   it('returns not found when retrieved patient does not exist', async () => {
@@ -59,7 +59,7 @@ describe('POST /api/patients', () => {
       .post('/api/patients')
       .send({firstName: 'Mikołaj', lastName: 'Borkowski', birthDate: '1927-09-18'})
       .expect(201)
-      .expect({ id: '4', firstName: 'Mikołaj', lastName: 'Borkowski', birthDate: '1927-09-18'});
+      .expect({ id: '4', firstName: 'Mikołaj', lastName: 'Borkowski', birthDate: '1927-09-18'}); // This returns the exact object that you give it, which might prove inconsistent with what the server ACTUALLY saved. Instead, we should return what the resulting object is that was created
   });
 
   it('returns bad request when request incorrectly formatted', async () => {

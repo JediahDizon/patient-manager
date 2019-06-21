@@ -5,12 +5,15 @@ describe('PatientRequest', () => {
     const body = {
       firstName: 'Marjorie',
       lastName: 'Brown',
-      birthDate: '1977-01-01'
+      birthDate: '1977-01-01',
+      civicAddress: '2912 Memorial Dr E #240',
+      municipality: 'Calgary, AB',
+      postalCode: 'T2A 6R1'
     };
 
     const request = forCreate(body);
 
-    expect(request.patient).toEqual({ firstName: 'Marjorie', lastName: 'Brown', birthDate: '1977-01-01'});
+    expect(request.patient).toEqual({ firstName: 'Marjorie', lastName: 'Brown', birthDate: '1977-01-01', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' });
   });
 
   it('updates a patient object from valid input', () => {
@@ -19,12 +22,15 @@ describe('PatientRequest', () => {
       id: '4',
       firstName: 'Marjorie',
       lastName: 'Brown',
-      birthDate: '1977-01-01'
+      birthDate: '1977-01-01',
+      civicAddress: '2912 Memorial Dr E #240',
+      municipality: 'Calgary, AB',
+      postalCode: 'T2A 6R1'
     };
 
     const request = forUpdate(id, body);
 
-    expect(request.patient).toEqual({ id: '4', firstName: 'Marjorie', lastName: 'Brown', birthDate: '1977-01-01'});
+    expect(request.patient).toEqual({ id: '4', firstName: 'Marjorie', lastName: 'Brown', birthDate: '1977-01-01', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' });
   });
 
   it('updates a patient based on resource if id is missing from object', () => {
@@ -32,15 +38,18 @@ describe('PatientRequest', () => {
     const body = {
       firstName: 'Marjorie',
       lastName: 'Brown',
-      birthDate: '1977-01-01'
+      birthDate: '1977-01-01',
+      civicAddress: '2912 Memorial Dr E #240',
+      municipality: 'Calgary, AB',
+      postalCode: 'T2A 6R1'
     };
 
     const request = forUpdate(id, body);
 
-    expect(request.patient).toEqual({ id: '4', firstName: 'Marjorie', lastName: 'Brown', birthDate: '1977-01-01'});
+    expect(request.patient).toEqual({ id: '4', firstName: 'Marjorie', lastName: 'Brown', birthDate: '1977-01-01', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' });
   });
 
-  it('throws an error when id is already assigned by client forCreate', () => { 
+  it('throws an error when id is already assigned by client forCreate', () => {
     const body = {
       id: '4',
       firstName: 'Marjorie',

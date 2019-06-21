@@ -5,7 +5,7 @@ import { PatientService } from './patient.service';
 import { Patient } from './patient.model';
 import { of } from 'rxjs';
 
-const patient: Patient = { id: '1', firstName: 'Yasmin', lastName: 'Apt', birthDate: '1964-05-13' };
+const patient: Patient = { id: '1', firstName: 'Yasmin', lastName: 'Apt', birthDate: '1964-05-13', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' };
 
 describe('PatientResolver', () => {
   let patientService: PatientService;

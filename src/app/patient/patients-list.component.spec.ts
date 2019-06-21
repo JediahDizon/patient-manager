@@ -2,7 +2,7 @@ import { PatientsListComponent } from './patients-list.component';
 import { of } from 'rxjs';
 import { Patient } from './patient.model';
 
-const patient: Patient = { id: '1', firstName: 'Test', lastName: 'Patient', birthDate: '1997-01-01'};
+const patient: Patient = { id: '1', firstName: 'Test', lastName: 'Patient', birthDate: '1997-01-01', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' };
 
 describe('PatientsListComponent', async () => {
   let component: PatientsListComponent;

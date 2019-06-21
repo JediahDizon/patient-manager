@@ -14,6 +14,14 @@ exports.patients_show = async function (req, res) {
   res.status(404).send();
 };
 
+exports.patients_show_address = async function (req, res) {
+  let patient = await patients.get(req.params.id);
+  if (patient) {
+    return res.status(200).json({ civicAddress: patient.civicAddress, municipality: patient.municipality, postalCode: patient.postalCode });
+  }
+  res.status(404).send();
+};
+
 exports.patients_update = async function (req, res) {
   let request;
   try {

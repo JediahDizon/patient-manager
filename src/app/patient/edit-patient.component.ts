@@ -21,9 +21,9 @@ export class EditPatientComponent implements OnInit {
   firstName = new FormControl('', Validators.required);
   lastName = new FormControl('', Validators.required);
   birthDate = new FormControl('', Validators.required);
-  civicAddress = new FormControl('', Validators.required);
-  municipality = new FormControl('', Validators.required);
-  postalCode = new FormControl('', Validators.required);
+  civicAddress = new FormControl('');
+  municipality = new FormControl('');
+  postalCode = new FormControl('', testPostalCode);
   form: FormGroup;
   saveError: string;
 
@@ -53,6 +53,7 @@ export class EditPatientComponent implements OnInit {
         this.birthDate.setValue(patient.birthDate || '');
         this.civicAddress.setValue(patient.civicAddress || '');
         this.municipality.setValue(patient.municipality || '');
+        this.postalCode.setValue(patient.postalCode || '');
       } else {
         this.patientId = '';
       }
@@ -81,4 +82,23 @@ export class EditPatientComponent implements OnInit {
   cancel() {
     this.router.navigate(['/patients']);
   }
+}
+
+/**
+ * Test Postal Code
+ *
+ * This function uses Regex pattern to match the postal code record of the patient
+ * to see if it is valid or not. This also returns null if the text is empty, as this
+ * function is not responsible for the "required" condition of the form.
+ *
+ * RegEx Reference: http://regexlib.com/Search.aspx?k=canadian+postal+code&AspxAutoDetectCookieSupport=1
+ *
+ * @param toTest The Form Control to test
+ * @return object Either null or an object containing the object that will tell the Form Control that it is invalid
+ */
+function testPostalCode(toTest: FormControl): object {
+  if(toTest.value.length > 0) {
+    return RegExp(/^$|^\d{5}-\d{4}|\d{5}|[A-Z]\d[A-Z] \d[A-Z]\d$/).test(toTest.value) ? null : { invalidPostalCode: { value: toTest.value }};
+  }
+  return null;
 }

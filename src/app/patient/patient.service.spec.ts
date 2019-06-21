@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { PatientService } from './patient.service';
 import { Patient } from './patient.model';
 
-const patient: Patient = { id: '1', firstName: 'Test', lastName: 'Patient', birthDate: '1997-01-01'};
+const patient: Patient = { id: '1', firstName: 'Test', lastName: 'Patient', birthDate: '1997-01-01', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' };
 
 describe('PatientService', () => {
   let patientService: PatientService;
@@ -44,8 +44,8 @@ describe('PatientService', () => {
   });
 
   it('creates a patient and returns the object with the id set', () => {
-    const newPatient: Patient = { id: null, firstName: 'Ben', lastName: 'Smith', birthDate: '2004-03-22' };
-    const createdPatient: Patient = { id: '2', firstName: 'Ben', lastName: 'Smith', birthDate: '2004-03-22' };
+    const newPatient: Patient = { id: null, firstName: 'Ben', lastName: 'Smith', birthDate: '2004-03-22', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' };
+    const createdPatient: Patient = { id: '2', firstName: 'Ben', lastName: 'Smith', birthDate: '2004-03-22', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' };
 
     patientService.savePatient(newPatient).subscribe(returnedPatient => {
       expect(returnedPatient).toEqual(createdPatient);
@@ -59,8 +59,8 @@ describe('PatientService', () => {
   });
 
   it('updates a patient and returns the object', () => {
-    const existingPatient: Patient = { id: '2', firstName: 'Ben', lastName: 'Smith', birthDate: '2004-03-22' };
-    const updatedPatient: Patient = { id: '2', firstName: 'Ben', lastName: 'Smith', birthDate: '2004-03-22' };
+    const existingPatient: Patient = { id: '2', firstName: 'Ben', lastName: 'Smith', birthDate: '2004-03-22', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1'  };
+    const updatedPatient: Patient = { id: '2', firstName: 'Ben', lastName: 'Smith', birthDate: '2004-03-22', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1'  };
 
     patientService.savePatient(existingPatient).subscribe(returnedPatient => {
       expect(returnedPatient).toEqual(updatedPatient);

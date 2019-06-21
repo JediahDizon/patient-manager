@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 
-const patient: Patient = { id: '1', firstName: 'Sam', lastName: 'Haynes', birthDate: '2000-01-01' };
+const patient: Patient = { id: '1', firstName: 'Sam', lastName: 'Haynes', birthDate: '2000-01-01', civicAddress: '2912 Memorial Dr E #240', municipality: 'Calgary, AB', postalCode: 'T2A 6R1' };
 
 let component: PatientThumbnailComponent;
 let fixture:   ComponentFixture<PatientThumbnailComponent>;

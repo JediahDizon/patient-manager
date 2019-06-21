@@ -10,11 +10,14 @@ import { of, throwError } from 'rxjs';
 import { Patient } from './patient.model';
 import { ActivatedRoute } from '@angular/router';
 
-const patientId = '14';
-const firstName = 'Jerry';
-const lastName = 'Hamilton';
-const birthDate = '1983-09-12';
-const patient: Patient = { id: patientId, firstName, lastName, birthDate };
+const patientId = '14',
+firstName = 'Jerry',
+lastName = 'Hamilton',
+birthDate = '1983-09-12',
+civicAddress = '2912 Memorial Dr E #240',
+municipality = 'Calgary, AB',
+postalCode = 'T2A 6R1';
+const patient: Patient = { id: patientId, firstName, lastName, birthDate, civicAddress, municipality, postalCode };
 
 describe('EditPatientComponent', () => {
   let fixture: ComponentFixture<EditPatientComponent>;
@@ -89,7 +92,7 @@ describe('EditPatientComponent', () => {
       fixture.detectChanges();
       fixture.debugElement.query(By.css('button.btn-primary')).nativeElement.click();
 
-      expect(mockPatientService.savePatient).toHaveBeenCalledWith({ id: '', firstName, lastName, birthDate });
+      expect(mockPatientService.savePatient).toHaveBeenCalledWith({ id: '', firstName, lastName, birthDate, civicAddress, municipality, postalCode });
     });
 
     it('navigates to /patients/:id when create returns', () => {
@@ -129,7 +132,7 @@ describe('EditPatientComponent', () => {
 
       fixture.debugElement.query(By.css('button.btn-primary')).nativeElement.click();
 
-      expect(mockPatientService.savePatient).toHaveBeenCalledWith({ id: patientId, firstName: 'Newname', lastName, birthDate });
+      expect(mockPatientService.savePatient).toHaveBeenCalledWith({ id: patientId, firstName: 'Newname', lastName, birthDate, civicAddress, municipality, postalCode });
     });
 
     it('navigates to /patients/:id when save returns', () => {
@@ -168,5 +171,8 @@ describe('EditPatientComponent', () => {
     component.form.controls['firstName'].setValue(firstName);
     component.form.controls['lastName'].setValue(lastName);
     component.form.controls['birthDate'].setValue(birthDate);
+    component.form.controls['civicAddress'].setValue(civicAddress);
+    component.form.controls['municipality'].setValue(municipality);
+    component.form.controls['postalCode'].setValue(postalCode);
   }
 });
