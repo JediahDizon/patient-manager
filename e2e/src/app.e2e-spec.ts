@@ -23,6 +23,9 @@ describe('Payne Dentistry App', () => {
 describe('Patient management', () => {
   const firstName = 'Jeremy';
   const lastName = 'Burnett';
+  const civicAddress = '2912 Memorial Dr E #240';
+  const municipality = 'Calgary AB';
+  const postalCode = 'T2A 6R1';
 
   let createPage: CreatePatientPage;
   let listPage: PatientListPage;
@@ -40,6 +43,9 @@ describe('Patient management', () => {
     await createPage.setFirstName(firstName);
     await createPage.setLastName(lastName);
     await createPage.setBirthDate('1996-04-07');
+    await createPage.setCivicAddress(civicAddress);
+    await createPage.setMunicipality(municipality);
+    await createPage.setPostalCode(postalCode);
     await createPage.submitForm();
   });
 

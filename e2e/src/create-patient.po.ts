@@ -21,6 +21,18 @@ export class CreatePatientPage {
     await element(by.css('input[name="birthDate"]')).sendKeys(value);
   }
 
+  async setCivicAddress(value) {
+    await element(by.css('input[name="civicAddress"]')).sendKeys(value);
+  }
+
+  async setMunicipality(value) {
+    await element(by.css('input[name="municipality"]')).sendKeys(value);
+  }
+
+  async setPostalCode(value) {
+    await element(by.css('input[name="postalCode"]')).sendKeys(value);
+  }
+
   async submitForm() {
     await element(by.css('button[type="submit"]')).click();
   }
